@@ -10,7 +10,7 @@
  *	página no tiene el foco.
  *	
  *	@author Franco Montenegro <area51ruke@gmail.com>
- *	@version 1.0.0.0
+ *	@version 2.0.0.0
  *	@requires jQuery
  */
 
@@ -46,7 +46,7 @@ var SoundOnNewMessage = function() {
 	var audio;
 
 	var originalTitle = String(document.title);
-	var isPageFocused = false;
+	var isPageFocused = true;
 
 	/*
 	 *	Inicializando variables
@@ -126,7 +126,7 @@ var SoundOnNewMessage = function() {
 	 *	@return <bool>
 	 */
 	var newMessages = function() {
-		return chatBoxSavedContent != chatbox.html();
+		return chatBoxSavedContent != chatbox.text();
 	};
 
 	/**
@@ -136,7 +136,7 @@ var SoundOnNewMessage = function() {
 	 */
 	var periodic = function() {
 		if ( newMessages() ) {
-			chatBoxSavedContent = chatbox.html();
+			chatBoxSavedContent = chatbox.text();
 			onNewMessage();
 		}
 
@@ -162,6 +162,10 @@ $(function() {
 
 	$('#frame_chatbox').ready(function() {
 
+		/*
+		 *	El contenido del iframe
+		 *	tarda un poco en cargar
+		 */
 		setTimeout(function() {
 			SoundOnNewMessage();
 		}, 3000);
