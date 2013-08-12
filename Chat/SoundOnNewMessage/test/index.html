@@ -4,19 +4,19 @@
 	</head>
 
 	<body>
-		<div id="chatbox"></div>
+		<iframe src="chat.html" id="frame_chatbox"></iframe>
 
 		<button onclick="simulateNewMessage()">nuevo mensaje</button>
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="../SoundOnNewMessage.js"></script>
+		<!--<script src="../SoundOnNewMessage.js"></script>-->
 
 		<script>
 
 			$(function() {
 
 				simulateNewMessage = function() {
-					$('#chatbox').append('<p>message</p>');
+					$('#frame_chatbox').contents().find('#chatbox').append('<p>message</p>');
 				};
 
 				periodicTest = function() {
@@ -24,7 +24,9 @@
 					setTimeout(periodicTest, 2000);
 				};
 
-				periodicTest();
+				$('#frame_chatbox').ready(function() {
+					periodicTest();
+				});
 
 			});
 
