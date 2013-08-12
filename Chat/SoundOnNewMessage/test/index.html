@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Your Forum</title>
+	</head>
+
+	<body>
+		<div id="chatbox"></div>
+
+		<button onclick="simulateNewMessage()">nuevo mensaje</button>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="../SoundOnNewMessage.js"></script>
+
+		<script>
+
+			$(function() {
+
+				simulateNewMessage = function() {
+					$('#chatbox').append('<p>message</p>');
+				};
+
+				periodicTest = function() {
+					simulateNewMessage();
+					setTimeout(periodicTest, 2000);
+				};
+
+				periodicTest();
+
+			});
+
+		</script>
+	</body>
+</html>
