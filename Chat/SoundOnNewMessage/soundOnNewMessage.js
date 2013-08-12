@@ -57,7 +57,6 @@ var SoundOnNewMessage = function() {
 	 *	@private
 	 */
 	var setChatBox = function() {
-		//chatbox = document.getElementById('chatbox');
 		chatbox = $frameChatBox.contents().find('#chatbox');
 	};
 
@@ -99,13 +98,6 @@ var SoundOnNewMessage = function() {
 	 *	@private
 	 */
 	var pageStateEvents = function() {
-		/*
-		$(window).on('blur', onBlurPage);
-
-		$body.on('mouseenter', onFocusPage);
-		$frameChatBox.on('mouseenter', onFocusPage);
-		*/
-
 		$(window).focus(onFocusPage).blur(onBlurPage);
 		$frameChatBox.focus(onFocusPage);
 	};
@@ -125,29 +117,6 @@ var SoundOnNewMessage = function() {
 			document.title = '(*) ' + originalTitle;
 			audio.play();
 		}
-	};
-
-	/**
-	 *	Al cambiar el DOM del chat
-	 *
-	 *	@private
-	 *	@deprecated ForoActivo usa iframes, no sirve
-	 */
-	var onChangeChatBox = function() {
-		chatbox.__appendChild.apply(chatbox, arguments);
-		onNewMessage();
-	};
-
-	/**
-	 *	Handler para cuando el DOM cambia
-	 *	(cambia cuando hay nuevos mensajes)
-	 *
-	 *	@private
-	 *	@deprecated ForoActivo usa iframes, no sirve
-	 */
-	var setOnChangeHandler = function() {
-		chatbox.__appendChild = chatbox.appendChild;
-		chatbox.appendChild = onChangeChatBox;
 	};
 
 	/**
